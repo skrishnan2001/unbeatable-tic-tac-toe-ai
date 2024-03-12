@@ -1,7 +1,6 @@
-# Getting Started with Create React App
+# The unbeatable tic tac toe ai
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+The project utilizes React for the front end and implements the Tic Tac Toe game with an AI opponent using the Minimax algorithm with alpha-beta pruning for optimal move selection, providing an engaging user experience with strategic gameplay.
 ## Available Scripts
 
 In the project directory, you can run:
