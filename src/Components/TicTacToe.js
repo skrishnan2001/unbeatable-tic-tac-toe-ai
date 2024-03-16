@@ -36,16 +36,19 @@ const TicTacToe = () => {
     const aiMove = (board) => {
         let bestScore = -Infinity;
         let bestMove = null;
+        let alpha = -Infinity;
+        let beta = Infinity;
 
         for (let i = 0; i < board.length; i++) {
             if (board[i] === null) {
                 const newBoard = [...board];
                 newBoard[i] = 'O';
-                const score = minimax(newBoard, 0, false, -Infinity, Infinity);
+                const score = minimax(newBoard, 0, false, alpha, beta);
                 if (score > bestScore) {
                     bestScore = score;
                     bestMove = i;
                 }
+                alpha = Math.max(alpha, bestScore);
             }
         }
 
@@ -55,9 +58,13 @@ const TicTacToe = () => {
     const minimax = (board, depth, isMaximizingPlayer, alpha, beta) => {
         const result = checkWinner(board);
         if (result !== null) {
-            return result === 'O' ? 10 - depth : depth - 10;
-        } else if (!board.includes(null)) {
-            return 0;
+            if (result === 'O') {
+                return 10 - depth;
+            } else if (result === 'X') {
+                return depth - 10;
+            } else {
+                return 0;
+            }
         }
 
         if (isMaximizingPlayer) {
